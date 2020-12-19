@@ -14,5 +14,172 @@
 #+latex_header: \setmonofont[Scale=MatchLowercase]{Hack}
 
 * Exercise 1
-** The strace command is used to track the system calls that are made by an application as it
-** executes. Install and use the strace command to analyse the fork application from OS Lab 2.
+** a - The =strace= command is used to track the system calls that are made by an application as it
+** executes. Install and use the =strace= command to analyse the fork application from OS Lab 2.
+** Determine for lines 9, 16, 18, 22, 24 from =fork.c= the system call that corresponds to each of
+** these lines.
+
+Here is the console output:
+#+begin_export latex
+{\small
+#+end_export
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC bash
+
+zamikshahid@zamikshahid:~/Downloads/OS_Lab2/fork$ strace -f ./fork
+execve("./fork", ["./fork"], [/* 46 vars */]) = 0
+brk(NULL)                               = 0x1ce8000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap2(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0xb774c000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat64(3, {st_mode=S_IFREG|0644, st_size=97700, ...}) = 0
+mmap2(NULL, 97700, PROT_READ, MAP_PRIVATE, 3, 0) = 0xb7734000
+close(3)                                = 0
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/i386-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\1\1\1\3\0\0\0\0\0\0\0\0\3\0\3\0\1\0\0\0\0\204\1\0004\0\0\0"..., 512) = 512
+fstat64(3, {st_mode=S_IFREG|0755, st_size=1791908, ...}) = 0
+mmap2(NULL, 1800700, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0xb757c000
+mprotect(0xb772d000, 4096, PROT_NONE)   = 0
+mmap2(0xb772e000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b1000) = 0xb772e000
+mmap2(0xb7731000, 10748, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0xb7731000
+close(3)                                = 0
+set_thread_area({entry_number:-1, base_addr:0xb774d100, limit:1048575, seg_32bit:1, contents:0, read_exec_only:0, limit_in_pages:1, seg_not_present:0, useable:1}) = 0 (entry_number:6)
+mprotect(0xb772e000, 8192, PROT_READ)   = 0
+mprotect(0x4bf000, 4096, PROT_READ)     = 0
+mprotect(0xb7775000, 4096, PROT_READ)   = 0
+munmap(0xb7734000, 97700)               = 0
+getpid()                                = 6900
+fstat64(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+brk(NULL)                               = 0x1ce8000
+brk(0x1d09000)                          = 0x1d09000
+write(1, "Main process PID: 6900\n", 23Main process PID: 6900
+) = 23
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6901
+strace: Process 6901 attached
+[pid  6900] clone( <unfinished ...>
+[pid  6901] clone( <unfinished ...>
+[pid  6900] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6902
+strace: Process 6902 attached
+[pid  6900] clone(strace: Process 6903 attached
+ <unfinished ...>
+[pid  6903] clone( <unfinished ...>
+[pid  6900] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6904
+strace: Process 6904 attached
+[pid  6902] clone( <unfinished ...>
+[pid  6900] getpid( <unfinished ...>
+[pid  6901] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6903
+[pid  6900] <... getpid resumed> )      = 6900
+strace: Process 6905 attached
+[pid  6904] getpid( <unfinished ...>
+[pid  6900] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6905] getpid()                    = 6905
+[pid  6901] clone(strace: Process 6906 attached
+ <unfinished ...>
+[pid  6905] getpid( <unfinished ...>
+[pid  6904] <... getpid resumed> )      = 6904
+[pid  6903] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6905
+[pid  6905] <... getpid resumed> )      = 6905
+[pid  6902] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6906
+[pid  6904] getpid( <unfinished ...>
+[pid  6906] getpid( <unfinished ...>
+[pid  6903] getpid(strace: Process 6907 attached
+ <unfinished ...>
+[pid  6906] <... getpid resumed> )      = 6906
+[pid  6905] write(1, "Child PID: 6905\n", 16 <unfinished ...>
+[pid  6904] <... getpid resumed> )      = 6904
+[pid  6903] <... getpid resumed> )      = 6903
+Child PID: 6905
+[pid  6902] getpid( <unfinished ...>
+[pid  6905] <... write resumed> )       = 16
+[pid  6901] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6907
+[pid  6904] write(1, "Child PID: 6904\n", 16 <unfinished ...>
+[pid  6906] getpid( <unfinished ...>
+[pid  6905] nanosleep({tv_sec=1, tv_nsec=0}, Child PID: 6904
+ <unfinished ...>
+[pid  6906] <... getpid resumed> )      = 6906
+[pid  6907] getpid( <unfinished ...>
+[pid  6904] <... write resumed> )       = 16
+[pid  6903] getpid( <unfinished ...>
+[pid  6902] <... getpid resumed> )      = 6902
+[pid  6901] getpid( <unfinished ...>
+[pid  6906] write(1, "Child PID: 6906\n", 16 <unfinished ...>
+[pid  6907] <... getpid resumed> )      = 6907
+[pid  6904] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6903] <... getpid resumed> )      = 6903
+[pid  6902] getpid( <unfinished ...>
+[pid  6901] <... getpid resumed> )      = 6901
+Child PID: 6906
+[pid  6906] <... write resumed> )       = 16
+[pid  6907] getpid( <unfinished ...>
+[pid  6903] write(1, "Child PID: 6903\n", 16 <unfinished ...>
+[pid  6902] <... getpid resumed> )      = 6902
+Child PID: 6903
+[pid  6901] getpid( <unfinished ...>
+[pid  6903] <... write resumed> )       = 16
+[pid  6907] <... getpid resumed> )      = 6907
+[pid  6906] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6901] <... getpid resumed> )      = 6901
+[pid  6903] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6907] write(1, "Child PID: 6907\n", 16 <unfinished ...>
+[pid  6902] write(1, "Child PID: 6902\n", 16Child PID: 6907
+ <unfinished ...>
+[pid  6907] <... write resumed> )       = 16
+[pid  6901] write(1, "Child PID: 6901\n", 16Child PID: 6901
+Child PID: 6902
+ <unfinished ...>
+[pid  6907] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6902] <... write resumed> )       = 16
+[pid  6901] <... write resumed> )       = 16
+[pid  6902] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6901] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6900] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6907] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6906] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6905] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6904] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6903] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6902] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6901] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6900] write(1, "Press ENTER key to Continue\n", 28 <unfinished ...>
+[pid  6907] fstat64(0,  <unfinished ...>
+[pid  6906] fstat64(0,  <unfinished ...>
+[pid  6905] fstat64(0,  <unfinished ...>
+[pid  6906] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+Press ENTER key to Continue
+[pid  6900] <... write resumed> )       = 28
+[pid  6907] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6905] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6904] fstat64(0,  <unfinished ...>
+[pid  6903] fstat64(0,  <unfinished ...>
+[pid  6900] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+[pid  6907] read(0,  <unfinished ...>
+[pid  6906] read(0,  <unfinished ...>
+[pid  6905] read(0,  <unfinished ...>
+[pid  6904] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6903] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6902] fstat64(0,  <unfinished ...>
+[pid  6904] read(0,  <unfinished ...>
+[pid  6903] read(0,  <unfinished ...>
+[pid  6901] fstat64(0,  <unfinished ...>
+[pid  6902] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6901] <... fstat64 resumed> {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6902] read(0,  <unfinished ...>
+[pid  6901] read(0,  <unfinished ...>
+[pid  6900] <... nanosleep resumed> 0xbfbb8ca8) = 0
+[pid  6900] fstat64(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
+[pid  6900] read(0, 
+
+#+END_SRC
+#+begin_export latex
+}
+#+end_export
+
+#+BEGIN_latex
+\newpage
+#+END_latex
+
+
+** b - Explain the =arguments= and the =return= code of each of the system calls you found in a
+

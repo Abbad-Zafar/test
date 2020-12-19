@@ -15,4 +15,4 @@
 
 * Exercise 1
 ** The strace command is used to track the system calls that are made by an application as it
-executes. Install and use the strace command to analyse the fork application from OS Lab 2.
+** executes. Install and use the strace command to analyse the fork application from OS Lab 2.

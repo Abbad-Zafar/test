@@ -1,4 +1,4 @@
-#+title: Operating Systems - Lab 4
+#+title: Operating Systems - Lab 2
 #+author: Qinyang Wu (3519174) @@latex:\\@@ Zamik Shahid(3507157) @@latex:\\@@ Tilak Wälde (2662598)
 #+options: toc:nil num:nil
 #+latex_header: \usepackage{fullpage}
@@ -14,8 +14,8 @@
 #+latex_header: \setmonofont[Scale=MatchLowercase]{Hack}
 
 * Exercise 1
-** The strace command is used to track the system calls that are made by an application as it
-executes. Install and use the strace command to analyse the fork application from OS Lab 2.
+** a - list all child processes of =PID 1=
+According to the manpage of =ps= we can use the following options:
 
 #+ATTR_LATEX: :options frame=single
 #+BEGIN_SRC text
@@ -34,3 +34,4 @@ executes. Install and use the strace command to analyse the fork application fro
           process ID in pidlist.  That is, it selects processes that are children of
           those listed in pidlist.
 #+END_SRC
+

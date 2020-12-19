@@ -17,8 +17,10 @@
 ** a - The =strace= command is used to track the system calls that are made by an application as it executes. Install and use the =strace= command to analyse the fork application from OS Lab 2.
 ** Determine for lines 9, 16, 18, 22, 24 from =fork.c= the system call that corresponds to each of these lines.
 
-lines 9, 16, 18, 22, 24 from =fork.c= are =highlighted= in console output. 
+lines 9, 16, 18, 22, 24 from =fork.c= are highlighted as =**= in console output. 
+
 Here is the console output:
+
 #+begin_export latex
 {\small
 #+end_export
@@ -55,7 +57,7 @@ brk(NULL)                               = 0x1ce8000
 brk(0x1d09000)                          = 0x1d09000
 write(1, "Main process PID: 6900\n", 23Main process PID: 6900
 ) = 23
-**clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6901    // strace of fork()
+**clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6901   
 strace: Process 6901 attached
 [pid  6900] clone( <unfinished ...>
 [pid  6901] clone( <unfinished ...>
@@ -188,4 +190,19 @@ Press ENTER key to Continue
 
 
 ** b - Explain the =arguments= and the =return= code of each of the system calls you found in a
+
+system call that corresponds to =fork()= written on line 9 of fork.c is:
+=clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6901=  
+
+system call that corresponds to =printf( "Child PID: %d\n", (int)getpid());= written on line 16 of fork.c is:
+=[pid  6904] write(1, "Child PID: 6904\n", 16 <unfinished ...>=
+
+system call that corresponds to =sleep(1);= written on line 18 of fork.c is:
+=[pid  6902] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>=
+
+system call that corresponds to =sleep(1);= written on line 22 of fork.c is:
+=[pid  6900] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>=
+
+system call that corresponds to =getchar();= written on line 24 of fork.c is:
+=[pid  7332] read(0, <unfinished ...>=
 

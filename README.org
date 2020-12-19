@@ -17,7 +17,7 @@
 ** a - The =strace= command is used to track the system calls that are made by an application as it executes. Install and use the =strace= command to analyse the fork application from OS Lab 2.
 ** Determine for lines 9, 16, 18, 22, 24 from =fork.c= the system call that corresponds to each of these lines.
 
-lines 9, 16, 18, 22, 24 from =fork.c= are **highlighted** in console output. 
+lines 9, 16, 18, 22, 24 from =fork.c= are ** highlighted ** in console output. 
 Here is the console output:
 #+begin_export latex
 {\small
@@ -93,7 +93,7 @@ Child PID: 6905
 [pid  6902] getpid( <unfinished ...>
 [pid  6905] <... write resumed> )       = 16
 [pid  6901] <... clone resumed> child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0xb774d168) = 6907
-**[pid  6904] write(1, "Child PID: 6904\n", 16 <unfinished ...>
+** [pid  6904] write(1, "Child PID: 6904\n", 16 <unfinished ...>
 [pid  6906] getpid( <unfinished ...>
 [pid  6905] nanosleep({tv_sec=1, tv_nsec=0}, Child PID: 6904
  <unfinished ...>
@@ -131,7 +131,7 @@ Child PID: 6902
 [pid  6907] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
 [pid  6902] <... write resumed> )       = 16
 [pid  6901] <... write resumed> )       = 16
-**[pid  6902] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
+** [pid  6902] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
 [pid  6901] nanosleep({tv_sec=1, tv_nsec=0},  <unfinished ...>
 [pid  6900] <... nanosleep resumed> 0xbfbb8ca8) = 0
 [pid  6907] <... nanosleep resumed> 0xbfbb8ca8) = 0
@@ -168,7 +168,7 @@ Press ENTER key to Continue
 [pid  6901] read(0,  <unfinished ...>
 [pid  6900] <... nanosleep resumed> 0xbfbb8ca8) = 0
 [pid  6900] fstat64(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 1), ...}) = 0
-**[pid  7332] read(0, 
+** [pid  7332] read(0, 
  <unfinished ...>
 [pid  7325] <... read resumed> "\n", 1024) = 1
 [pid  7325] write(1, "Process 7325 ended\n", 19Process 7325 ended
@@ -188,5 +188,4 @@ Press ENTER key to Continue
 
 
 **b - Explain the =arguments= and the =return= code of each of the system calls you found in a
-
 
